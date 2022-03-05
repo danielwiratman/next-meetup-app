@@ -4,6 +4,7 @@ import Head from "next/head";
 import { Fragment } from "react";
 
 function HomePage(props) {
+    console.log(props.meetups)
     return (
         <Fragment>
             <Head>
@@ -35,7 +36,7 @@ export async function getStaticProps() {
     const meetupsCollection = db.collection("meetups");
 
     const meetups = await meetupsCollection.find().toArray();
-
+    
     client.close();
     return {
         props: {
