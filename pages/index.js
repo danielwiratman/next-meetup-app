@@ -4,12 +4,15 @@ import Head from "next/head";
 import { Fragment } from "react";
 
 function HomePage(props) {
-    console.log(props.meetups)
+    console.log(props.meetups);
     return (
         <Fragment>
             <Head>
                 <title>Meetup Next App</title>
-                <meta name='description' content="This is the home page of my First Next App" />
+                <meta
+                    name="description"
+                    content="This is the home page of my First Next App"
+                />
             </Head>
             <MeetupList meetups={props.meetups} />
         </Fragment>
@@ -36,7 +39,7 @@ export async function getStaticProps() {
     const meetupsCollection = db.collection("meetups");
 
     const meetups = await meetupsCollection.find().toArray();
-    
+
     client.close();
     return {
         props: {
@@ -46,8 +49,8 @@ export async function getStaticProps() {
                 image: meetup.image,
                 id: meetup._id.toString(),
             })),
-            revalidate: 1,
         },
+        revalidate: 1,
     };
 }
 
